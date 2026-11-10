@@ -1,0 +1,16 @@
+load("@rules_python//python:defs.bzl", "py_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+exports_files(["zig_test.bzl"])
+
+py_binary(
+    name = "zig_test_compiler",
+    srcs = [
+        "__init__.py",
+        "zig_test_compile.py",
+        "zig_toolchain_extract.py",
+    ],
+    main = "zig_test_compile.py",
+    python_version = "3.12",
+)

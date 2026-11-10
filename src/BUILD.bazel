@@ -1,0 +1,21 @@
+load("//bazel:zig_test.bzl", "crypto_ecosystems_zig_test", "crypto_ecosystems_zig_test_binary")
+
+package(default_visibility = ["//visibility:public"])
+
+linux_x86_64 = ["@platforms//os:linux", "@platforms//cpu:x86_64"]
+
+crypto_ecosystems_zig_test_binary(
+    name = "shlex_test_binary",
+    archive = "//toolchains:zig-linux-x86_64-0.14.0.tar.xz",
+    compiler = "//bazel:zig_test_compiler",
+    source = "shlex.zig",
+    exec_compatible_with = linux_x86_64,
+    target_compatible_with = linux_x86_64,
+)
+
+crypto_ecosystems_zig_test(
+    name = "shlex_test",
+    binary = ":shlex_test_binary",
+    exec_compatible_with = linux_x86_64,
+    target_compatible_with = linux_x86_64,
+)
