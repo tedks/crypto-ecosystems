@@ -1,6 +1,6 @@
 # Bazel package graph
 
-The first child-owned Bazel targets are `//src:shlex_test_binary` and `//src:shlex_test`. They compile the existing `src/shlex.zig` unit tests with this repository's committed Zig 0.14.0 Linux x86-64 archive and run the resulting binary. The action declares only the source, archive, and managed Python compiler/extractor. Both source and archive hashes are checked before compilation, and extraction rejects unsafe archive entries and size excesses.
+The first Bazel targets are `//src:shlex_test_binary` and `//src:shlex_test`. They compile the existing `src/shlex.zig` unit tests with this repository's committed Zig 0.14.0 Linux x86-64 archive and run the resulting binary. The action declares the source, archive, and managed Python compiler/extractor. Bazel tracks source content, while the tool verifies the exact archive digest and rejects unsafe archive entries and size excesses. Both targets declare Linux x86-64 execution and target constraints.
 
 With Bazel 8.7.0 available, run from this repository root:
 
