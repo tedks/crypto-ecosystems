@@ -3,7 +3,7 @@
 def _crypto_ecosystems_zig_test_binary_impl(ctx):
     source = ctx.file.source
     archive = ctx.file.archive
-    test_binary = ctx.outputs.executable
+    test_binary = ctx.actions.declare_file(ctx.label.name)
 
     ctx.actions.run(
         executable = ctx.executable.compiler,
@@ -18,7 +18,7 @@ def _crypto_ecosystems_zig_test_binary_impl(ctx):
     return [DefaultInfo(files = depset([test_binary]), executable = test_binary)]
 
 def _crypto_ecosystems_zig_test_impl(ctx):
-    test_binary = ctx.outputs.executable
+    test_binary = ctx.actions.declare_file(ctx.label.name + ".test")
     ctx.actions.symlink(
         output = test_binary,
         target_file = ctx.executable.binary,
